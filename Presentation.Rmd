@@ -1,0 +1,59 @@
+---
+title: 'Peer-graded Assignment: Course Project: Shiny Application and Reproducible
+  Pitch'
+author: "Jeff Domingo"
+date: "11/21/2020"
+output: 
+  ioslides_presentation:
+    keep_md: true
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Overview
+
+This is a presentation about an app that helps the users to predict the miles per gallon (MPG) of their car based provided specifications given the following value.
+
+The variables that we are using for the prediction are the following:
+
+1. Horsepower - minimum value of 50, and the maximum value of 350
+2. Number of cylinders - four, six, and eight wheels
+3. Transmission type - automatic transmission, and manual transmission
+4. Weight of the car - in 1000 lbs, minimum value of 1, and maximum value of 6
+
+## Functionality
+
+The user needs to provide the specifications of their car based on the horsepower, number of cylinders, transmission type, and weight. The application model will fill filter its own data to provide an accurate model based on the given specification of the mpg rate of the car and provide a computation of the actual MPG. 
+
+## Slide With Code
+
+```{r}
+summary(mtcars[,1:4])
+```
+
+## Slide With Plot
+
+```{r, echo=FALSE}
+library(ggplot2)
+library(ggthemes)
+
+Cylinder <- as.factor(mtcars$cyl)
+plot <- ggplot(data=mtcars, aes(x=hp, y = mpg))+
+  geom_point(aes(color = Cylinder), alpha = 0.9) +
+  theme_stata() + scale_color_stata()
+plot
+```
+
+## Shiny application and files
+
+You can go to: https://domingojeff.shinyapps.io/CourseProjectShinyApp/
+and start testing the app.
+
+The application is build using Shiny package and the source code is in 2 files:
+- `ui.R`
+- `server.R`
+
+Files are uploaded and can be found at: https://github.com/artickavenger/Course-Project-Shiny-Application-and-Reproducible-Pitch
